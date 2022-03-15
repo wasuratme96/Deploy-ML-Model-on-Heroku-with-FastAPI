@@ -1,7 +1,5 @@
 [core]
     remote = mlops_dvc
-['remote "data"']
-    url = s3://censusdatamlops/data/
 ['remote "mlops_dvc"']
     url = s3://censusdatamlops/data/
     credentialpath = /Users/wasuratsoontronchai/.aws/credentials
