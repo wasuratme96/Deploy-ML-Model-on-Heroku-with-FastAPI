@@ -1,18 +1,22 @@
 import numpy as np
+import pandas as pd
+from typing import *
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
 
 def process_data(
-    X, categorical_features=[], label=None, training=True, encoder=None, lb=None
-):
+    X : pd.DataFrame, 
+    categorical_features : list = [], 
+    label: str = None, 
+    training:bool = True, 
+    encoder: OneHotEncoder = None, 
+    lb: LabelBinarizer = None
+    ):
     """ Process the data used in the machine learning pipeline.
 
     Processes the data using one hot encoding for the categorical features and a
     label binarizer for the labels. This can be used in either training or
     inference/validation.
-
-    Note: depending on the type of model used, you may want to add in functionality that
-    scales the continuous data.
 
     Inputs
     ------

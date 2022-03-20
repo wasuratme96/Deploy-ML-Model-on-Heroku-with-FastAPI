@@ -1,0 +1,5 @@
+data:
+  raw_data: "./data/census.csv"
+  clean_data: "./data/census_clean.csv"
+  featurized_data: "./data/census_featurized.csv"
+
