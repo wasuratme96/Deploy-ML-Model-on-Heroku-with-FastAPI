@@ -1,5 +1,26 @@
 data:
-  raw_data: "./data/census.csv"
-  clean_data: "./data/census_clean.csv"
-  featurized_data: "./data/census_featurized.csv"
-
+  raw_data_path: "./data/census.csv"
+  clean_data_path: "./data/census_clean.csv"
+  featurized_data_path: "./data/census_featurized.npy"
+  label_data_path: "./data/census_label.npy"
+process_data:
+  cat_features: [
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country"]
+  label: "salary"
+  train_mode:
+    train: true
+    encoder : None
+    label_bin : None
+  interfence_mode: 
+    train: false
+    encoder : "./model/encoder.joblib"
+    label_bin : "./model/labelbin.joblib"
+model:
+  train_test_split:

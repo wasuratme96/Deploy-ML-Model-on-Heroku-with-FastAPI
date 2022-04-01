@@ -1,8 +1,14 @@
+import logging
 import numpy as np
 import pandas as pd
+
 from typing import *
+from joblib import dump
+
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
 
 def process_data(
     X : pd.DataFrame, 
@@ -47,7 +53,7 @@ def process_data(
         Trained LabelBinarizer if training is True, otherwise returns the binarizer
         passed in.
     """
-
+    logger.info("[Feature Engineering Steps] : Seperate Label - Features")
     if label is not None:
         y = X[label]
         X = X.drop([label], axis=1)
@@ -57,9 +63,11 @@ def process_data(
     X_categorical = X[categorical_features].values
     X_continuous = X.drop(*[categorical_features], axis=1)
 
+    logger.info("[Feature Engineering Steps] : Encoding & Labelize on feature and label")
     if training is True:
         encoder = OneHotEncoder(sparse=False, handle_unknown="ignore")
         lb = LabelBinarizer()
+
         X_categorical = encoder.fit_transform(X_categorical)
         y = lb.fit_transform(y.values).ravel()
     else:
@@ -72,3 +80,29 @@ def process_data(
 
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return X, y, encoder, lb
+
+def execute_process_data(args_data ,args_feature, args_feature_mode):
+    '''
+    Args:
+        - args_data.clean_data_path (str) : Path of clean data in .csv format
+        - args_data.featurized_data_path (str) : Path to store featurized data in .csv format
+        - args_feature.cate_features (list[str]) : List of categorical data
+        - args_feature.label (str) : Columns name of label data
+        - args_feature.train_mode (bool) : if True meaning is training mode, False is inference mode
+        - args_feature.encoder (OneHotEncoder) : OneHotEncoder object in .joblib format
+        - args_feature.label_encoder (LabelBinarizer) : LabelBinarizer object in .joblib format
+    Outputs:
+        None
+    '''
+    clean_data = pd.read_csv(args_data['clean_data_path'])
+    feat_data, label_data, encoder, lb = process_data(clean_data,
+                                                      args_feature['cat_features'],
+                                                      args_feature['label'],
+                                                      args_feature_mode['train'],
+                                                      args_feature_mode['encoder'],
+                                                      args_feature_mode['label_bin'])
+
+    np.save(args_data['featurized_data_path'], feat_data)
+    np.save(args_data['label_data_path'], label_data)
+    dump(encoder, args_feature['interfence_mode']['encoder'])
+    dump(lb, args_feature['interfence_mode']['label_bin'])
