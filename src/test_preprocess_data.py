@@ -25,17 +25,6 @@ def get_featured_train_mode(get_data):
                                                       train_config['label_bin'])
     return feat_data, label_data, encoder, lb
 
-@pytest.fixture
-def get_featured_inference_mode(get_data):
-    feat_data, label_data, encoder, lb = process_data(
-                                                      get_data,
-                                                      process_config['cat_features'],
-                                                      process_config['label'],
-                                                      inference_config['train'],
-                                                      inference_config['encoder'],
-                                                      inference_config['label_bin'])
-    return feat_data, label_data, encoder, lb
-
 def test_processed_data_shape(get_featured_train_mode):
     feat_data, label_data, _, _ = get_featured_train_mode
     assert len(feat_data) == len(label_data)

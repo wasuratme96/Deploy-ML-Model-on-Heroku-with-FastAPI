@@ -1,3 +1,7 @@
 
 /census.csv
 /census_clean.csv
+/census_featurized.npy
+/census_label.npy
+/clean_test_data.csv
+/clean_train_data.csv

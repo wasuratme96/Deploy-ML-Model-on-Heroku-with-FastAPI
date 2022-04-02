@@ -3,8 +3,8 @@ import argparse
 import logging
 
 from src.data_cleaning import execute_clean_data
-from src.preprocess_data import execute_process_data
-from src.train_model import excute_modeling
+from src.preprocess_data import execute_data_split, execute_process_data
+#from src.train_model import excute_modeling
 #import src.train_model
 #import src.visualization
 
@@ -27,11 +27,16 @@ def execute_pipeline(args):
         logger.info("Perform Data Cleaning")
         execute_clean_data(config['data'])
 
+    if args.step == "all" or args.step == "data_split":
+        logger.info("Perform Data Splitting")
+        execute_data_split(config['data'], config['model'])
+
     if args.step == "all" or args.step == "process_data":
         logger.info("Perform Preprocessing Data")
         execute_process_data(config['data'],
                              config['process_data'],
-                             config['process_data']['train_mode'])
+                             config['process_data']['train_mode'],
+                             config['model'])
 
     #if args.step == "all" or args.step == "traing_test_model":
     #    logger.info("Perform Model Development")
@@ -50,10 +55,11 @@ if __name__ == "__main__":
         "--step",
         type = str,
         choices = ["data_cleaning",
+                   "data_split",
                    "process_data",
                    "traing_test_model",
                    "validation",
-                   "all"],
+                   "all"], 
         default = "all",
         help = "ML Pipeline actions to execute"
     )

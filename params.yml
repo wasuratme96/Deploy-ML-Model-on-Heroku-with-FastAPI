@@ -1,8 +1,14 @@
 data:
   raw_data_path: "./data/census.csv"
   clean_data_path: "./data/census_clean.csv"
-  featurized_data_path: "./data/census_featurized.npy"
-  label_data_path: "./data/census_label.npy"
+  train:
+    full_data_path : "./data/clean_train_data.csv"
+    featurized_data_path: "./data/census_featurized_train.npy"
+    label_data_path: "./data/census_label_train.npy"
+  test:
+    full_data_path : "./data/clean_test_data.csv"
+    featurized_data_path: "./data/census_featurized_test.npy"
+    label_data_path: "./data/census_label_test.npy"
 process_data:
   cat_features: [
         "workclass",
@@ -23,4 +29,5 @@ process_data:
     encoder : "./model/encoder.joblib"
     label_bin : "./model/labelbin.joblib"
 model:
-  train_test_split:
+  random_state: 112233
+  test_ratio: 0.2

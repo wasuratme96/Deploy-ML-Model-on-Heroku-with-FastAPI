@@ -4,6 +4,7 @@ import pandas as pd
 
 from typing import *
 from joblib import dump
+from sklearn.model_selection import train_test_split
 
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
@@ -81,12 +82,37 @@ def process_data(
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return X, y, encoder, lb
 
-def execute_process_data(args_data ,args_feature, args_feature_mode):
+def execute_data_split(args_data:str, args_model:float) -> None:
+    '''
+    Args:
+        - args_data.clean_data_path (str):
+        - args_data.train.full_data_path (str):
+        - args_data.test.full_data_path (str):
+        - args_model.tes_ratio (float)
+    Outputs:
+        None
+    '''
+    logger.info("[Data Splitting Steps] : Download Clean Data")
+    clean_data = pd.read_csv(args_data['clean_data_path'])
+
+    logger.info("[Data Splitting Steps] : Split Train-Test Data")
+    train_data, test_data = train_test_split(clean_data, 
+                                            test_size=args_model['test_ratio'],
+                                            random_state = args_model['random_state'])
+
+    logger.info("[Data Splitting Steps] : Save Train-Test Data")
+    train_data.to_csv(args_data['train']['full_data_path'], index = 0)
+    test_data.to_csv(args_data['test']['full_data_path'], index = 0)
+    
+def execute_process_data(args_data: str, 
+                        args_feature: str, 
+                        args_feature_mode: str,
+                        args_model: str):
     '''
     Args:
         - args_data.clean_data_path (str) : Path of clean data in .csv format
         - args_data.featurized_data_path (str) : Path to store featurized data in .csv format
-        - args_feature.cate_features (list[str]) : List of categorical data
+        - args_feature.cat_features (list[str]) : List of categorical data
         - args_feature.label (str) : Columns name of label data
         - args_feature.train_mode (bool) : if True meaning is training mode, False is inference mode
         - args_feature.encoder (OneHotEncoder) : OneHotEncoder object in .joblib format
@@ -94,15 +120,15 @@ def execute_process_data(args_data ,args_feature, args_feature_mode):
     Outputs:
         None
     '''
-    clean_data = pd.read_csv(args_data['clean_data_path'])
-    feat_data, label_data, encoder, lb = process_data(clean_data,
+    train_data = pd.read_csv(args_data['train']['full_data_path'])
+    feat_data, label_data, encoder, lb = process_data(train_data,
                                                       args_feature['cat_features'],
                                                       args_feature['label'],
                                                       args_feature_mode['train'],
                                                       args_feature_mode['encoder'],
                                                       args_feature_mode['label_bin'])
 
-    np.save(args_data['featurized_data_path'], feat_data)
-    np.save(args_data['label_data_path'], label_data)
+    np.save(args_data['train']['featurized_data_path'], feat_data)
+    np.save(args_data['train']['label_data_path'], label_data)
     dump(encoder, args_feature['interfence_mode']['encoder'])
     dump(lb, args_feature['interfence_mode']['label_bin'])
