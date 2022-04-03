@@ -5,3 +5,5 @@
 /census_label.npy
 /clean_test_data.csv
 /clean_train_data.csv
+/census_featurized_train.npy
+/census_label_train.npy

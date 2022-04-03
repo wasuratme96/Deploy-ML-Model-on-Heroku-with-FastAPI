@@ -1,0 +1,4 @@
+outs:
+- md5: a8397cb0f692af1474ad2e11ca0ef04d
+  size: 208512
+  path: census_label_train.npy

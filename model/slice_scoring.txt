@@ -1,0 +1,54 @@
+[Features : workclass -> Value : Never-worked], Precision: 1.000 Recall: 1.000 FBeta: 1.000
+[Features : workclass -> Value : Self-emp-not-inc], Precision: 0.627 Recall: 0.444 FBeta: 0.520
+[Features : workclass -> Value : Private], Precision: 0.713 Recall: 0.554 FBeta: 0.623
+[Features : workclass -> Value : State-gov], Precision: 0.678 Recall: 0.656 FBeta: 0.667
+[Features : workclass -> Value : 0     Private
+dtype: object], Precision: 0.600 Recall: 0.290 FBeta: 0.391
+[Features : workclass -> Value : Local-gov], Precision: 0.732 Recall: 0.695 FBeta: 0.713
+[Features : workclass -> Value : Self-emp-inc], Precision: 0.774 Recall: 0.863 FBeta: 0.816
+[Features : workclass -> Value : Federal-gov], Precision: 0.645 Recall: 0.759 FBeta: 0.698
+[Features : education -> Value : School], Precision: 0.000 Recall: 0.000 FBeta: 0.000
+[Features : education -> Value : Doctorate], Precision: 0.761 Recall: 0.964 FBeta: 0.850
+[Features : education -> Value : Assoc-acdm], Precision: 0.658 Recall: 0.581 FBeta: 0.617
+[Features : education -> Value : HS-grad], Precision: 0.611 Recall: 0.214 FBeta: 0.317
+[Features : education -> Value : Masters], Precision: 0.730 Recall: 0.801 FBeta: 0.764
+[Features : education -> Value : Assoc-voc], Precision: 0.700 Recall: 0.515 FBeta: 0.593
+[Features : education -> Value : Prof-school], Precision: 0.857 Recall: 0.940 FBeta: 0.897
+[Features : education -> Value : Some-college], Precision: 0.676 Recall: 0.512 FBeta: 0.583
+[Features : education -> Value : Bachelors], Precision: 0.702 Recall: 0.780 FBeta: 0.739
+[Features : marital-status -> Value : Divorced], Precision: 0.579 Recall: 0.239 FBeta: 0.338
+[Features : marital-status -> Value : Separated], Precision: 1.000 Recall: 0.385 FBeta: 0.556
+[Features : marital-status -> Value : Married-AF-spouse], Precision: 1.000 Recall: 0.000 FBeta: 0.000
+[Features : marital-status -> Value : Widowed], Precision: 0.000 Recall: 0.000 FBeta: 0.000
+[Features : marital-status -> Value : Never-married], Precision: 0.346 Recall: 0.085 FBeta: 0.136
+[Features : marital-status -> Value : Married-civ-spouse], Precision: 0.718 Recall: 0.670 FBeta: 0.693
+[Features : marital-status -> Value : Married-spouse-absent], Precision: 0.500 Recall: 0.111 FBeta: 0.182
+[Features : occupation -> Value : 0     Prof-specialty
+dtype: object], Precision: 0.600 Recall: 0.290 FBeta: 0.391
+[Features : occupation -> Value : Other-service], Precision: 0.600 Recall: 0.111 FBeta: 0.188
+[Features : occupation -> Value : Adm-clerical], Precision: 0.600 Recall: 0.412 FBeta: 0.488
+[Features : occupation -> Value : Tech-support], Precision: 0.647 Recall: 0.786 FBeta: 0.710
+[Features : occupation -> Value : Priv-house-serv], Precision: 0.000 Recall: 1.000 FBeta: 0.000
+[Features : occupation -> Value : Handlers-cleaners], Precision: 0.000 Recall: 0.000 FBeta: 0.000
+[Features : occupation -> Value : Prof-specialty], Precision: 0.763 Recall: 0.784 FBeta: 0.773
+[Features : occupation -> Value : Sales], Precision: 0.689 Recall: 0.636 FBeta: 0.661
+[Features : occupation -> Value : Machine-op-inspct], Precision: 0.444 Recall: 0.082 FBeta: 0.138
+[Features : occupation -> Value : Craft-repair], Precision: 0.554 Recall: 0.263 FBeta: 0.357
+[Features : occupation -> Value : Protective-serv], Precision: 0.811 Recall: 0.588 FBeta: 0.682
+[Features : occupation -> Value : Transport-moving], Precision: 0.556 Recall: 0.169 FBeta: 0.260
+[Features : occupation -> Value : Armed-Forces], Precision: 1.000 Recall: 1.000 FBeta: 1.000
+[Features : occupation -> Value : Exec-managerial], Precision: 0.738 Recall: 0.786 FBeta: 0.762
+[Features : occupation -> Value : Farming-fishing], Precision: 0.400 Recall: 0.083 FBeta: 0.138
+[Features : relationship -> Value : Unmarried], Precision: 0.615 Recall: 0.167 FBeta: 0.262
+[Features : relationship -> Value : Own-child], Precision: 0.000 Recall: 0.000 FBeta: 0.000
+[Features : relationship -> Value : Husband], Precision: 0.714 Recall: 0.666 FBeta: 0.689
+[Features : relationship -> Value : Wife], Precision: 0.782 Recall: 0.698 FBeta: 0.738
+[Features : relationship -> Value : Other-relative], Precision: 0.000 Recall: 0.000 FBeta: 0.000
+[Features : relationship -> Value : Not-in-family], Precision: 0.492 Recall: 0.164 FBeta: 0.246
+[Features : race -> Value : White], Precision: 0.721 Recall: 0.597 FBeta: 0.653
+[Features : race -> Value : Other], Precision: 0.507 Recall: 0.531 FBeta: 0.519
+[Features : race -> Value : Black], Precision: 0.650 Recall: 0.506 FBeta: 0.569
+[Features : sex -> Value : Male], Precision: 0.701 Recall: 0.609 FBeta: 0.652
+[Features : sex -> Value : Female], Precision: 0.747 Recall: 0.485 FBeta: 0.588
+[Features : native-country -> Value : Other], Precision: 0.661 Recall: 0.531 FBeta: 0.589
+[Features : native-country -> Value : United-States], Precision: 0.711 Recall: 0.596 FBeta: 0.648

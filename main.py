@@ -4,8 +4,8 @@ import logging
 
 from src.data_cleaning import execute_clean_data
 from src.preprocess_data import execute_data_split, execute_process_data
-#from src.train_model import excute_modeling
-#import src.train_model
+from src.train_model import execute_modeling
+from src.model_validation import execute_model_validation
 #import src.visualization
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -38,13 +38,13 @@ def execute_pipeline(args):
                              config['process_data']['train_mode'],
                              config['model'])
 
-    #if args.step == "all" or args.step == "traing_test_model":
-    #    logger.info("Perform Model Development")
-    #    execute_modeling(config['model'])
-#
-    #if args.step == 'all' or args.step == "model_validation":
-    #    logger.info("Perform model validation")
-    #    src.
+    if args.step == "all" or args.step == "train_model":
+        logger.info("Perform Model Development - Train")
+        execute_modeling(config['data']['train'], config['model'])
+
+    if args.step == 'all' or args.step == "model_validation":
+        logger.info("Perform model validation")
+        execute_model_validation(config['data']['test'], config['process_data'], config['model'])
 
 
 if __name__ == "__main__":

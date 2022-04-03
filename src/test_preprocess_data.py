@@ -2,6 +2,7 @@ import yaml
 import pytest
 import pandas as pd
 import numpy as np
+from src.data_cleaning import clean_data
 from src.preprocess_data import process_data
 
 config = yaml.safe_load(open("./params.yml"))
@@ -11,8 +12,9 @@ inference_config = process_config['interfence_mode']
 
 @pytest.fixture
 def get_data():
-    clean_data = clean_data = pd.read_csv(config['data']['clean_data_path'])
-    return clean_data
+    raw_data = pd.read_csv(config['data']['raw_data_path'])
+    cleaned_data = clean_data(raw_data)
+    return cleaned_data
 
 @pytest.fixture
 def get_featured_train_mode(get_data):
