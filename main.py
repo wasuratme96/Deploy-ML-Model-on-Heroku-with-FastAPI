@@ -18,10 +18,10 @@ def execute_pipeline(args):
     Execute each pipeline for machine learning model training.
     Available steps:
         - data_cleaning
-        - feature_engineering
-        - traing_test_model
-        - 
-
+        - data_split
+        - process_data
+        - train_model
+        - model_validation
     """
     if args.step == "all" or args.step == "data_cleaning":
         logger.info("Perform Data Cleaning")
@@ -46,7 +46,6 @@ def execute_pipeline(args):
         logger.info("Perform model validation")
         execute_model_validation(config['data']['test'], config['process_data'], config['model'])
 
-
 if __name__ == "__main__":
     # Main entry point of pipeline
     parser = argparse.ArgumentParser(description= "CICD Model Training")
@@ -57,7 +56,7 @@ if __name__ == "__main__":
         choices = ["data_cleaning",
                    "data_split",
                    "process_data",
-                   "traing_test_model",
+                   "train_model",
                    "validation",
                    "all"], 
         default = "all",

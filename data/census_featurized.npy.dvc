@@ -1,4 +1,0 @@
-outs:
-- md5: 0ef0b811e4c581adf06f71e296766289
-  size: 14847944
-  path: census_featurized.npy

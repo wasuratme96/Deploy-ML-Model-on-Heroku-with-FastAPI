@@ -1,4 +1,0 @@
-outs:
-- md5: 06d5193b187e62cfc0a04ed1cad8f7b9
-  size: 260616
-  path: census_label.npy
