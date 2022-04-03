@@ -22,6 +22,7 @@ Data for evalution is the same as training set, but remaining 20% of data is use
 Selected performance metrics is ```accuracy``` on KFold cross-validation with n = 10 on trainining data. <br/>
 ```accuracy_mean``` = 0.831 and ```accuracy_std``` = 0.06
 ## Ethical Considerations
-Original data contains ```race```, ```gender``` and ```origin_country``` which all of them is highly skewed, especially ```origin_country``` will drive to a model that may potentially discriminate people; further investigation before using it should be done.
+Original data contains ```race```, ```gender```, ```education``` and ```native_country``` which all of them is highly skewed, especially ```native_country``` that mostly come this **USA**. This will drive the model to discriminate people base on these demographic and geographic features set.<br/>
+Investigation before using it should be done.
 
 ## Caveats and Recommendations

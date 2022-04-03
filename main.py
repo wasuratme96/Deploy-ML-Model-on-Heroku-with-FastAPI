@@ -6,7 +6,6 @@ from src.data_cleaning import execute_clean_data
 from src.preprocess_data import execute_data_split, execute_process_data
 from src.train_model import execute_modeling
 from src.model_validation import execute_model_validation
-#import src.visualization
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()

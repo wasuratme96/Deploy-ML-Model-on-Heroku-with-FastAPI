@@ -25,7 +25,7 @@ def test_questionmask_exist(get_clean_data):
 
 def test_removed_columns(get_clean_data):
     # Check if removed columns is exist
-    removed_columns = ['capital-gain', 'capital-loss']
+    removed_columns = ['capital_gain', 'capital_loss']
     for col_name in removed_columns:
         assert col_name not in get_clean_data.columns
 

@@ -25,6 +25,7 @@ def clean_data(data:pd.DataFrame) -> None:
     # Remove whitespace from columns name
     logger.info("[Clean Data Steps] : Remove whitespace in columns name")
     data.columns = [col.strip() for col in data.columns]
+    data.columns = [col.replace("-", "_") for col in data.columns]
 
     # Columns Type Selection
     categorical_columns = data.select_dtypes("object").columns
@@ -44,7 +45,7 @@ def clean_data(data:pd.DataFrame) -> None:
 
     # Group naitve-country into "United-State" and "Other"
     logger.info("[Clean Data Steps] : Grouping categorical data")
-    data['native-country'] = np.where(data['native-country'] != 'United-States', 
+    data['native_country'] = np.where(data['native_country'] != 'United-States', 
                                                         'Other', 'United-States')
 
     # Group race into "White", "Black" and "Other"
@@ -56,7 +57,7 @@ def clean_data(data:pd.DataFrame) -> None:
     
     # Drop very skew data on numeric columns
     logger.info("[Clean Data Steps] : Drop skew numerical data")
-    data.drop(columns = ['capital-gain', 'capital-loss'], inplace = True)         
+    data.drop(columns = ['capital_gain', 'capital_loss', "education_num"], inplace = True)         
     
     return data
 
