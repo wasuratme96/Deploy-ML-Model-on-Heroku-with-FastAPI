@@ -1,0 +1,4 @@
+outs:
+- md5: f02068360c1a75af5e67d09c8d9488d0
+  size: 412
+  path: labelbin.joblib

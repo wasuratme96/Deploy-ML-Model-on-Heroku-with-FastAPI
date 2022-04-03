@@ -64,5 +64,4 @@ if __name__ == "__main__":
         help = "ML Pipeline actions to execute"
     )
     args = parser.parse_args()
-
     execute_pipeline(args)

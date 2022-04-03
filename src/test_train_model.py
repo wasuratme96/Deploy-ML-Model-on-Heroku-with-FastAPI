@@ -46,4 +46,11 @@ def test_model_prediction(get_data):
     except Exception as exc:
         assert False, "Trained model can't predict on existing features"
 
+def test_binary_output(get_data):
+    trained_model = train_model(get_data[0], 
+                                get_data[1],
+                                model_config)
+    predicted_value = trained_model.predict(get_data[0])
+    assert len(set(predicted_value)) == 2
+
                     

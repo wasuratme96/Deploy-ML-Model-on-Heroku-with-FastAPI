@@ -30,7 +30,7 @@ process_data:
     label_bin : "./model/labelbin.joblib"
 model:
   model_path: "./model/model.joblib"
-  model_scoring_path: "./model/slice_scoring.txt"
+  model_scoring_path: "./model/slice_output.txt"
   random_state: 112233
   test_ratio: 0.2
   cv_splits: 10
