@@ -106,8 +106,7 @@ def execute_data_split(args_data:str, args_model:float) -> None:
     
 def execute_process_data(args_data: str, 
                         args_feature: str, 
-                        args_feature_mode: str,
-                        args_model: str):
+                        args_feature_mode: str):
     '''
     Args:
         - args_data.clean_data_path (str) : Path of clean data in .csv format

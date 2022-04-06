@@ -29,7 +29,7 @@ def compute_model_metrics(y:np.array, preds:np.array) -> Tuple[float, float, flo
     recall = recall_score(y, preds, zero_division=1)
     return precision, recall, fbeta
 
-def inference(model, X:np.array) -> np.array:
+def make_prediction(model, X:np.array) -> np.array:
     """ Run model inferences and return the predictions.
     Args:
         - model (GradientBoostingClassifier): Trained machine learning model.

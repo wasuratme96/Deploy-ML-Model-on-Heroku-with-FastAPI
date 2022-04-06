@@ -39,7 +39,7 @@ def clean_data(data:pd.DataFrame) -> None:
     # Replace all NA with mode on each columns
     # Remove white space in data
     for cat_col in categorical_columns:
-        col_mode = data[cat_col].mode()[0]
+        col_mode = data[cat_col].mode()[0].strip()
         data[cat_col] = data[cat_col].str.strip()
         data[cat_col] = data[cat_col].fillna(str(col_mode))
 

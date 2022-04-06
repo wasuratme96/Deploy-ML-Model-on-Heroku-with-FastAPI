@@ -35,7 +35,7 @@ def execute_pipeline(args):
         execute_process_data(config['data'],
                              config['process_data'],
                              config['process_data']['train_mode'],
-                             config['model'])
+                            )
 
     if args.step == "all" or args.step == "train_model":
         logger.info("Perform Model Development - Train")

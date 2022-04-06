@@ -1,0 +1,4 @@
+outs:
+- md5: 3c1195f9e2b33c77fcd2ce0d406e3416
+  size: 11252864
+  path: census_featurized_train.npy
