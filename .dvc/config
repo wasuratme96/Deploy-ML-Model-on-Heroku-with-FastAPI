@@ -2,5 +2,5 @@
     remote = mlops_dvc
 ['remote "mlops_dvc"']
     url = s3://censusdatamlops/data/
-    credentialpath = /Users/wasuratsoontronchai/.aws/credentials
-    profile = default
+    #credentialpath = /Users/wasuratsoontronchai/.aws/credentials
+    #profile = default

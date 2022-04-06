@@ -37,7 +37,7 @@ jobs:
         uses: iterative/setup-dvc@v1
 
       - name: Pull latest dvc from remote 
-        run: dvc remote list
+        run: dvc pull
 
       - name: Lint with flake8
         run: |
