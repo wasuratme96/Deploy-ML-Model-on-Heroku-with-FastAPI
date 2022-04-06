@@ -2,8 +2,7 @@ name: Test python pipeline for CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ master ]
 
 jobs:
   test:
