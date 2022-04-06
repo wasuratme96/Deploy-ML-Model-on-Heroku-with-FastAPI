@@ -46,6 +46,7 @@ def test_model_prediction(get_data):
         assert False, "Trained model can't predict on existing features"
 
 def test_binary_output(get_data):
+    '''Check if model return only 2 class according to the binary problem'''
     trained_model = train_model(get_data[0], 
                                 get_data[1],
                                 model_config)
