@@ -33,15 +33,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Check File
-        run: |
-          aws s3 ls
-
       - name: Setup DVC
         uses: iterative/setup-dvc@v1
 
       - name: Pull latest dvc from remote 
-        run: dvc pull
+        run: dvc dag
 
       - name: Lint with flake8
         run: |
