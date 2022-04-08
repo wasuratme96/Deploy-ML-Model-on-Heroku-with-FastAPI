@@ -36,6 +36,23 @@ class User(BaseModel):
     sex: Literal['Male', 'Female']
     hours_per_week: int
     native_country: Literal['United-States', 'Other']
+    
+    class Config:
+        schema_extra = {
+            "example" :{
+                "age" : 27,
+                "workclass": 'Federal-gov',
+                "fnlgt": 196386,
+                "education": 'Assoc-acdm',
+                "marital_status": 'Married-civ-spouse',
+                "occupation": 'Adm-clerical',
+                "relationship": 'Husband',
+                "race": 'White',
+                "sex": 'Male',
+                "hours_per_week": 40,
+                "native_country": 'Other',
+            }
+        }
 
 # For DVC making pull data on deployment
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
