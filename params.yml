@@ -40,5 +40,3 @@ model:
     min_samples_split: 500
     min_samples_leaf: 50
     max_depth: 8
-
-
