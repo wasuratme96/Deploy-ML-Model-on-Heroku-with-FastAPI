@@ -26,3 +26,6 @@ Original data contains ```race```, ```gender```, ```education``` and ```native_c
 Investigation before using it should be done.
 
 ## Caveats and Recommendations
+This model is selected base on trial and error only, hyperparameter haven't yet perform tuning and also model type have been selected for learning purpose only. Fine tuning on both hyperparameter and model selection should be done before using.
+
+Also carefully investigate on [slice_output.txt](".model/slice_output.txt), performance base on specific features is vary. So, it need to carefullly check on contexual of your data.
