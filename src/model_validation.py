@@ -1,12 +1,15 @@
 import logging
 import pandas as pd
 import numpy as np
+from numpy import mean, std
 
 from joblib import load
 from typing import Tuple, List, Dict
 
 from sklearn.metrics import fbeta_score, precision_score, recall_score
+from sklearn.metrics import classification_report
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+from sklearn.model_selection import KFold, cross_val_score
 
 from src.preprocess_data import process_data
 
@@ -77,6 +80,40 @@ def model_slicing_score(test_data: pd.DataFrame,
 
     return slices_performance_scoring
 
+def model_test_score(test_data: pd.DataFrame,
+                    encoder_model: OneHotEncoder,
+                    label_bin_model: LabelBinarizer, 
+                    trained_model,
+                    args_process_data: Dict,
+                    args_model: Dict) -> pd.DataFrame:
+        '''
+         Args:
+            - test_data (pd.DataFrame) :
+            - encoder_model (OneHotEncoder) :
+            - label_bin_model (LabelBinarizer) :
+            - trained_model (???) :
+            - args_process_data (Dict) : 
+        Outputs:
+            None
+        '''
+        X_test, y_test, _, _ = process_data(test_data,
+                                                  categorical_features=args_process_data['cat_features'],
+                                                  label=args_process_data['label'],
+                                                  encoder=encoder_model,
+                                                  lb=label_bin_model,
+                                                  training=args_process_data['interfence_mode']['train'])
+
+        cv = KFold(n_splits=args_model['cv_splits'], shuffle = True, random_state=args_model['random_state'])
+        test_scores = cross_val_score(trained_model, X_test, y_test, 
+                            scoring = "accuracy", cv = cv, n_jobs=-1)
+
+        y_test_preds = trained_model.predict(X_test)
+        prc_test, rcl_test, fb_test = compute_model_metrics(y_test, y_test_preds)
+
+        logger.info("[Model Evaluation Steps] : Accuracy = %.3f (mean) %.3f (std)" % (mean(test_scores), std(test_scores)))
+        logger.info("[Model Evaluation Steps] : Precision: %.3f Recall: %.3f FBeta: %.3f" % (prc_test, rcl_test, fb_test))
+        return None
+
 def execute_model_validation(args_test_data, args_process_data, args_model):
     """
     Args:
@@ -85,10 +122,15 @@ def execute_model_validation(args_test_data, args_process_data, args_model):
     Outputs:
         None
     """
+    logger.info("[Model Evaluation Steps] : Start evaluate model")
+
     test_data = pd.read_csv(args_test_data['full_data_path'])
     encoder = load(args_process_data['interfence_mode']['encoder'])
     lb = load(args_process_data['interfence_mode']['label_bin'])
     model = load(args_model['model_path'])
+
+    _ = model_test_score(test_data, encoder, lb,
+                        model, args_process_data, args_model)
 
     slice_scoring_list = model_slicing_score(test_data, encoder, lb, 
                                              model, args_process_data)
@@ -96,8 +138,3 @@ def execute_model_validation(args_test_data, args_process_data, args_model):
     with open(args_model['model_scoring_path'], 'w') as out:
         for slice_value in slice_scoring_list:
             out.write(slice_value + '\n')
-
-
-
-
-    

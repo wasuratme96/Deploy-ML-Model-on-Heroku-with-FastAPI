@@ -6,6 +6,7 @@ from joblib import dump
 
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import KFold, cross_val_score
+from src.model_validation import compute_model_metrics
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
@@ -30,11 +31,17 @@ def train_model(X_train: np.array,
     logger.info("[Model Training Steps] : Model Training...")
     model.fit(X_train, y_train)
 
-    logger.info("[Model Training Steps] : Model Cross-validating...")
+    logger.info("[Model Training Steps] : Model Cross-validating...") 
     scores = cross_val_score(model, X_train, y_train, 
                             scoring = "accuracy", cv = cv, n_jobs=-1)
+    
+    logger.info("[Model Training Steps] : Model Validation")                     
+    y_train_preds = model.predict(X_train)
+    prc_train, rcl_train, fb_train = compute_model_metrics(y_train, y_train_preds)
 
     logger.info("[Model Training Steps] : Accuracy = %.3f (mean) %.3f (std)" % (mean(scores), std(scores)))
+    logger.info("[Model Training Steps] : Precision: %.3f Recall: %.3f FBeta: %.3f" % (prc_train, rcl_train, fb_train))
+    
     return model
 
 def execute_modeling(args_data, args_model):

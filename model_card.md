@@ -20,7 +20,18 @@ For training dataset, 80% of data have been randomly selected.
 Data for evalution is the same as training set, but remaining 20% of data is used for evaluation by slicing on each categorical features data.
 ## Metrics
 Selected performance metrics is ```accuracy``` on KFold cross-validation with n = 10 on trainining data. <br/>
-```accuracy_mean``` = 0.831 and ```accuracy_std``` = 0.06
+**Train Set Performance** <br/>
+```accuracy_mean``` = 0.842 and ```accuracy_std``` = 0.006
+
+**Test Set Performance** <br/>
+```accuracy_mean``` = 0.838 and ```accuracy_std``` = 0.012
+
+For full test data set, precision, recall, fbeta have been calculated. <br/>
+**Train Set** <br/>
+```Precision``` = 0.735, ```Recall``` = 0.611, ```FBeta``` = 0.667 <br/>
+**Test Set** <br/>
+```Precision``` = 0.711, ```Recall``` = 0.549, ```FBeta``` = 0.620
+
 ## Ethical Considerations
 Original data contains ```race```, ```gender```, ```education``` and ```native_country``` which all of them is highly skewed, especially ```native_country``` that mostly come this **USA**. This will drive the model to discriminate people base on these demographic and geographic features set.<br/>
 Investigation before using it should be done.

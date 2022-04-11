@@ -4,8 +4,8 @@ from prediction_api import app
 
 @pytest.fixture
 def prediction_client():
-    api_client = TestClient(app)
-    return api_client
+    with TestClient(app) as c:
+        yield c
 
 def test_get(prediction_client):
     response = prediction_client.get("/")
@@ -28,7 +28,7 @@ def test_post_class0(prediction_client):
                             "relationship": "Husband",
                             "race": "White",
                             "sex": "Male",
-                            "hours_per_week": 53,
+                            "hours_per_week": 56,
                             "native_country": "United-States"
                             }
     )
@@ -36,23 +36,23 @@ def test_post_class0(prediction_client):
     assert response.json() == {"prediction" : "<=50K"}
 
 def test_post_class1(prediction_client):
-    '''Test prediction on class 1 : salary <=50K'''
+    '''Test prediction on class 1 : salary >50K'''
     response = prediction_client.post("/", json={
-                              "age": 27,
-                              "workclass": "Federal-gov",
-                              "fnlgt": 196386,
-                              "education": "Assoc-acdm",
+                              "age": 53,
+                              "workclass": "Private",
+                              "fnlgt": 123429,
+                              "education": "Some-college",
                               "marital_status": "Married-civ-spouse",
-                              "occupation": "Adm-clerical",
+                              "occupation": "Exec-managerial",
                               "relationship": "Husband",
                               "race": "White",
                               "sex": "Male",
-                              "hours_per_week": 40,
-                              "native_country": "Other"
+                              "hours_per_week": 60,
+                              "native_country": "United-States"
                             }
     )
     assert response.status_code == 200
-    assert response.json() == {"prediction" : "<=50K"}
+    assert response.json() == {"prediction" : ">50K"}
 
 def test_post_error_value(prediction_client):
     response = prediction_client.post("/", json={

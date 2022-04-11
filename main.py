@@ -41,7 +41,7 @@ def execute_pipeline(args):
         logger.info("Perform Model Development - Train")
         execute_modeling(config['data']['train'], config['model'])
 
-    if args.step == 'all' or args.step == "model_validation":
+    if args.step == 'all' or args.step == "validation":
         logger.info("Perform model validation")
         execute_model_validation(config['data']['test'], config['process_data'], config['model'])
 

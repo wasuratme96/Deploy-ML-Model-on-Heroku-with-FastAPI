@@ -64,10 +64,17 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
 
 app = FastAPI()
 
-config = yaml.safe_load(open("./params.yml"))
-preprocess_config = config['process_data']
-preprocess_interf_config = preprocess_config['interfence_mode']
-model_config = config['model']
+@app.on_event("startup")
+async def startup_event():
+    global config, preprocess_config, preprocess_interf_config, trained_model, encoder_model, label_binarize
+    
+    config = yaml.safe_load(open("./params.yml"))
+    preprocess_config = config['process_data']
+    preprocess_interf_config = preprocess_config['interfence_mode']
+
+    trained_model = load(config['model']['model_path'])
+    encoder_model = load(preprocess_interf_config['encoder'])
+    label_binarize = load(preprocess_interf_config['label_bin'])    
 
 @app.get("/")
 async def get_items():
@@ -75,10 +82,6 @@ async def get_items():
 
 @app.post("/")
 async def inference(user_data: User):
-    trained_model = load(config['model']['model_path'])
-    encoder_model = load(preprocess_interf_config['encoder'])
-    label_binarize = load(preprocess_interf_config['label_bin'])
-
     input_array = np.array([[
         user_data.age,
         user_data.workclass,
